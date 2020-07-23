@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from 'src/app/core/services/storage-service';
 import { AdminService } from 'src/app/core/services/admin-service';
 import { currentUpload } from '../materials/materials.component';
+import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
 
 
@@ -24,6 +25,7 @@ export class PostulantCurator implements OnInit {
     constructor(
       private storageService: StorageService,
       private adminService : AdminService,
+      private router: Router,
     ) { }
   
     ngOnInit(): void {      
@@ -78,6 +80,8 @@ export class PostulantCurator implements OnInit {
             ).subscribe(
             response=>{
               console.log(response);
+              this.router.navigateByUrl("/admin");
+
             }
           )
   
@@ -110,6 +114,8 @@ export class PostulantCurator implements OnInit {
             ).subscribe(
             response=>{
               console.log(response);
+              this.router.navigateByUrl("/admin");
+
             }
           )
   

@@ -171,7 +171,6 @@ export const ifAdmin : RouteInfo[] = [
     icon: "ni-single-02 text-yellow",
     class: "",
   },
-  { path: '/upload', title: 'Upload',  icon:'ni ni-cloud-upload-96 text-red', class: '' },
   { path: '/materials', title:'My material', icon:'ni ni-archive-2 text-red',class:''},
   { path: '/admin', title:'Admin', icon:'ni ni-settings', class:''},
 ];
