@@ -86,16 +86,16 @@
           </div>
         </div>
         <div class="text-center" style = "min-width: 280px;">
-          <a type="button" (click)="downloadMaterial()" class="btn btn-success mt-4">
+          <a type="button" (click)="downloadMaterial()" class="btn btn-success mt-4" style = "min-width: 220px;">
             Descargar
           </a>
           <div *ngIf = "!onMyFavourites">
-            <a type="button" (click)="addToFavorites()" class="btn btn-primary mt-4">
+            <a type="button" (click)="addToFavorites()" class="btn btn-primary mt-4" style = "min-width: 220px;">
               Agregar Favoritos
             </a>
           </div>
           <div *ngIf = "onMyFavourites">
-            <a type="button" (click)="deletFromFavorites()" class="btn btn-danger mt-4">
+            <a type="button" (click)="deletFromFavorites()" class="btn btn-danger mt-4" style = "min-width: 220px;">
               Quitar Favoritos
             </a>
           </div>
@@ -105,12 +105,12 @@
     </div>
     <div *ngIf= "isCurator">
       <div class="text-center" style = "min-width: 280px;">
-        <a type="button" (click)="AceptarCurar()" class="btn btn-success mt-4">
+        <a type="button" (click)="AceptarCurar()" class="btn btn-success mt-4" style = "min-width: 220px;">
           Aceptar
         </a>
         
         
-        <a type="button" (click)="NegarCurar()" class="btn btn-danger mt-4">
+        <a type="button" (click)="NegarCurar()" class="btn btn-danger mt-4" style = "min-width: 220px;">
           Rechazar
         </a>
       </div>

@@ -99,13 +99,22 @@ export class FilesComponent implements OnInit {
             console.log(error);
           }
         )
+
+        this.filesService.addedView(
+          this.identity.id,
+          this.idFile,
+        ).subscribe(
+          response=>{
+            if(response){
+              console.log("Aumento en 1 el view");
+            }
+            else{
+              console.log("Puta mano error");
+            }
+          }
+        )
     
-
-
-
-
-
-      }, error => {
+        }, error => {
 
       }
     )
@@ -121,6 +130,7 @@ export class FilesComponent implements OnInit {
         }
       }
     )
+
 
     
 
@@ -211,8 +221,15 @@ export class FilesComponent implements OnInit {
      data=>{
       console.log("error");
     },error=>{
-
       window.open(error.url);
+      this.filesService.adddownload(this.idFile).subscribe(
+        response=>{
+          console.log("Se descargo uno men");
+        },
+        error=>{
+          console.log("no se descargo nada ");
+        }
+      )
     }
 
 

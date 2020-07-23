@@ -80,7 +80,6 @@ export class MaterialsComponent implements OnInit {
           inputValidator: (value) => {
             return new Promise((resolve) => {
               if (value != null) {
-                console.log(value)
                 resolve()
               } else {
                 resolve('Necesita elegir uno de los temas ')
@@ -90,9 +89,6 @@ export class MaterialsComponent implements OnInit {
         })
         if (Material) {
           let valor = `${Material}`;
-          console.log(this.currentTema);
-          console.log("este es el material : ");
-          console.log(this.identity.id + " "+ this.temporal_resolve[0] + " " + this.storageService.getCoursesLocalStorage()[results[2]] + " "+ (Number(this.temporal_resolve[3])+1) + " ");
           this.materialService.createMaterial(
             this.identity.id,
             this.temporal_resolve[0],
@@ -120,11 +116,8 @@ export class MaterialsComponent implements OnInit {
                 myMaterials: response.myMaterials,
                 favouriteMaterials: response.favouriteMaterials,
               }
-              console.log("ESTO ES EL ID DEL QUE LO CREO : ");
               console.log(response);
-              console.log(response.myMaterials[0].course);
               this.currentupload.constru(this.temporal_resolve[0], response.myMaterials[0].course.grade,response.myMaterials[0].id, this.temporal_resolve[1], this.storageService.getCoursesLocalStorage()[results[2]],this.currentTema[Number(valor)]);
-              console.log(this.currentupload);
               this.storageService.setIdentityLocalStorage(JSON.stringify(identity));
             },
             (error) => {
@@ -160,7 +153,6 @@ export class MaterialsComponent implements OnInit {
           response=>{
             currentMaterial.status = "Pendiente";
             currentMaterial.color_curated = "badge badge-pill badge-danger";
-            console.log("LLEGO ACAAAAAAAAAAAAAAAAA");
 
             
           }
@@ -168,7 +160,7 @@ export class MaterialsComponent implements OnInit {
 
       }
     })
-    console.log(currentMaterial);
+
   }
 
   MandarEliminar(currentMaterial){
@@ -193,15 +185,14 @@ export class MaterialsComponent implements OnInit {
         ).subscribe(
           response=>{
             if(response){
-              console.log("Done");
-              console.log(response);
               const identity = {
                 id: this.identity.id,
+
                 name: this.identity.name,
                 lastname: this.identity.lastname,
                 email: this.identity.email,
                 username: this.identity.username,
-                role: this.identity.type,
+                role: this.identity.role,
                 grade: this.identity.grade,
                 birth: moment(this.identity.birth).format('DD/MM/YYYY'),
                 institucion: this.identity.institucion,
@@ -218,7 +209,6 @@ export class MaterialsComponent implements OnInit {
         )
       }
     })
-    console.log(currentMaterial);
 
   }
 
@@ -230,13 +220,11 @@ export class MaterialsComponent implements OnInit {
     this.actualizar = false;
     this.toUpload = true;
     this.currentupload.constru(currentMaterial.name, currentMaterial.grade, currentMaterial.id, currentMaterial.desc, currentMaterial.cur, currentMaterial.tem);
-    console.log(this.currentupload);
   }
 
   IrMaterial(currentMaterial){
     this.storageService.setTempFile_Courses(currentMaterial.id);
     this.router.navigateByUrl("/files");
-    console.log(currentMaterial);
   }
 
   async CreateMaterial(){
@@ -268,7 +256,6 @@ export class MaterialsComponent implements OnInit {
       }
     ]).then((result) => {
       if (result) {
-        console.log(result);
         this.mostrar_datos(result);
       }
       else{
@@ -288,13 +275,11 @@ export class MaterialsComponent implements OnInit {
 
   ngOnInit(): void {
     this.identity = JSON.parse(this.storageService.getIdentityLocalStorage());
-    console.log(this.identity);
     this.materialService.getMyMaterials(this.identity.id).subscribe(
       response=>{
         if(response){
-          console.log("ESTAAAAAAAMOS ACAAAAAAAAAAAAAAA");
-          console.log(response);
           for(let val of response){
+            console.log(val);
             if(val.status!=3 && val.status !=4){
             this.myMaterials.push(
               new SingleMaterial(
@@ -302,7 +287,7 @@ export class MaterialsComponent implements OnInit {
                 val.name,
                 val.course.grade,
                 this.Status(val.status),
-                this.whoAproved(val.whoAproved),
+                this.whoAproved(val.whoApproved),
                 val.visits,
                 this.getLearningPoints(val.learningPoints,val.ratingPeople),
                 val.ratingPeople,
@@ -325,7 +310,6 @@ export class MaterialsComponent implements OnInit {
 
   Status(status){
     if(status == 0){
-      console.log("Entro aca");
       return "Creado";
     }
     else if(status == 1 ){
@@ -337,13 +321,15 @@ export class MaterialsComponent implements OnInit {
     
   }
   whoAproved(who_aproved){
+    console.log("Aca estamos ");
+    console.log(who_aproved);
     if(who_aproved == null){
       return "------";
     }
+    
     return who_aproved.username;
   }
   getLearningPoints(learningPoints,ratingPeople){
-    console.log(learningPoints + "-------"+ratingPeople);
     if(learningPoints == 0){
       return "0";
     }

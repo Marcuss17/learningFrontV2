@@ -126,7 +126,6 @@ export const ifCurator : RouteInfo[] = [
     class: "",
   },
   { path: '/all_tcurators', title: 'Materiales Curar',  icon:'ni-bold-up text-red', class: '' },
-  { path: '/upload', title: 'Upload',  icon:'ni ni-cloud-upload-96 text-red', class: '' },
   { path: '/materials', title:'Material', icon:'ni ni-archive-2 text-red',class:''},
   { path: "/mymaterials", 
   title: "Favoritos", 
@@ -134,6 +133,29 @@ export const ifCurator : RouteInfo[] = [
   class: "" 
 },
 ];
+
+export const ifCwaiting : RouteInfo[] = [
+  {
+    path: "/dashboard",
+    title: "Learning Peru",
+    icon: "ni-tv-2 text-primary",
+    class: "",
+  },
+  { path: "/courses", title: "Cursos", icon: "ni-planet text-blue", class: "" },
+  {
+    path: "/user-profile",
+    title: "Perfil",
+    icon: "ni-single-02 text-yellow",
+    class: "",
+  },
+  { path: '/materials', title:'Material', icon:'ni ni-archive-2 text-red',class:''},
+  { path: "/mymaterials", 
+  title: "Favoritos", 
+  icon: "ni-books text-red", 
+  class: "" 
+},
+];
+
 
 export const ifAdmin : RouteInfo[] = [
   {
@@ -207,11 +229,19 @@ export class SidebarComponent implements OnInit {
                 this.isCollapsed = true;
               });
             }else{ 
-            
+              if(this.identity.role == "CWAITING"){
+                this.menuItems = ifCwaiting.filter((menuItem) => menuItem);
+                this.router.events.subscribe((event) => {
+                  this.isCollapsed = true;
+                });
+              }
+              else{
               this.menuItems = ROUTES.filter((menuItem) => menuItem);
               this.router.events.subscribe((event) => {
                 this.isCollapsed = true;
+              
             });
+          }
           }
         
         }

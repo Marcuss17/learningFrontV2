@@ -51,6 +51,14 @@ export class StorageService {
 		return localStorage.getItem("course_grade");
 	}
 
+	setPostulantLocalStorage(postulant : string){
+		localStorage.setItem("postulant",postulant);
+	}
+
+	getPostulantLocalStorage(){
+		return localStorage.getItem("postulant");
+	}
+
 	setIdentityLocalStorage(identity: string){
 		localStorage.setItem("identity", identity);
 	}

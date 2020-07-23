@@ -9,7 +9,7 @@
           <div class="card-body" [ngStyle]="{'border-color' : error_course === true ? '#8B0000' : '#fff' , 'box-shadow':error_course === true ? '0 0 10px red' : ' 0 0 0px gold' }" >
               <div *ngIf="!currentFile">
                 <ngx-extended-pdf-viewer
-                [src]="'/assets/pdfs/ada.pdf'"
+                [src]="currentPostulant.linkMaterial"
                 [useBrowserLocale]="true" 
                 [textLayer]="true" 
                 [showHandToolButton]="true" 
@@ -30,13 +30,23 @@
             <div class="card-body" [ngStyle]="{'border-color' : error_grade === true ? '#8B0000' : '#fff' , 'box-shadow':error_grade === true ? '0 0 10px red' : ' 0 0 0px gold' }">
               <div class="row icon-examples">
                 <div class="col-lg-7 col-md-6" >
-                    <div class="card" style="width: 250px; ">
-                        <img src="/assets/img/theme/professor_cover.jpg" style="width:100%">
-                        <h2 style="text-align: center;">{{Postulante.name}}</h2>
-                        <p class="title">Fecha: {{Postulante.fecha}}</p>
-                        <p>Colegio:      {{Postulante.colegio}}</p>
-                        <p>Especialidad:    {{Postulante.especialidad}}</p>
-                        <p>Materiales:  {{Postulante.materiales}}</p>
+
+                      <div class="card" style="width: 250px; ">
+                          <img src="/assets/img/theme/professor_cover.jpg" style="width:100%">
+                          <h2 style="text-align: center;">{{currentPostulant.username}}</h2>
+                          <p class="title">Fecha: {{currentPostulant.fecha}}</p>
+                          <p>Nombre:      {{currentPostulant.name}}</p>
+                          <p>Apellido:      {{currentPostulant.lastname}}</p>
+                          <p>Colegio:      {{currentPostulant.institucion}}</p>
+                          <p>Especialidad:    {{currentPostulant.especialidad}}</p>
+                          <p>Materiales:  {{currentPostulant.cantidadMateriales}}</p>
+                      </div>
+
+                      <div class="card" style="width: 250px; ">
+                        <h5 style="text-align: center;">Descripcion</h5>
+                        
+                        <p>{{currentPostulant.description}}</p>
+                        
                     </div>
                   </div>
               </div>
