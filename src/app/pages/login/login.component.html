@@ -103,6 +103,7 @@
                   type="button"
                   (click)="logIn(loginForm)"
                   class="btn btn-primary my-4"
+                  [disabled]="!loginForm.valid"
                 >
                   Ingresar
                 </button>
