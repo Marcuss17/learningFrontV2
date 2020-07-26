@@ -4,7 +4,7 @@ import { AdminService } from 'src/app/core/services/admin-service';
 import { currentUpload } from '../materials/materials.component';
 import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
-
+import { CommonService } from 'src/app/core/services/common-services';
 
 @Component({
   selector: 'app-postulant_curator',
@@ -93,8 +93,8 @@ export class PostulantCurator implements OnInit {
     DenegarCurator(){
   
       Swal.fire({
-        title: 'Usted no aceptar a este postulante',
-        text: "No podra cambiar esta accion",
+        title: 'Esta apunto de rechazar a este profesor',
+        text: "No podra cambiar esta acción",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -136,6 +136,7 @@ export class PostulantCurator implements OnInit {
     public cantidadMateriales : number;
     public institucion : string;
     public linkMaterial : string;
+    private commonService: CommonService;
   
     constructor(id,username,lastname,name,fecha,especialidad,cantidadMateriales,institucion,linkMaterial){
       this.id = id;
@@ -146,7 +147,7 @@ export class PostulantCurator implements OnInit {
       this.especialidad = especialidad;
       this.cantidadMateriales = cantidadMateriales;
       this.institucion = institucion;
-      this.linkMaterial = "http://localhost:8081/uploads/download/"+this.id+"/upgrade_files/"+linkMaterial;
+      this.linkMaterial = 'https://s3.us-east-2.amazonaws.com/learning-peru-bucket/' +this.id+"/upgradeFiles/"+linkMaterial;
     }
   };
 

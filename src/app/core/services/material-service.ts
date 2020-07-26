@@ -77,7 +77,7 @@ export class MaterialServices {
   }
 
   sendFile(id, file) : Observable<any> {
-    return this.http.post(this.commonService.baseUrl + "/uploads/uploads/" + id + "/materiales", file);
+    return this.http.post(this.commonService.baseUrl + "/storage/uploadFile/" + id + "/materiales", file);
   }
 /*
   downloadMaterial(

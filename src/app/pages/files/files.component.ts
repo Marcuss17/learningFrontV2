@@ -109,7 +109,7 @@ export class FilesComponent implements OnInit {
               console.log("Aumento en 1 el view");
             }
             else{
-              console.log("Puta mano error");
+              console.log("Error");
             }
           }
         )
@@ -376,7 +376,7 @@ export class File{
 
   getName(link,type){
     if(type!="YOUTUBE_LINK"){
-      return link.substring(0,link.length-4);
+      return link.substring(14,link.length-4);
     }
     return "Video de youtube";
   }
@@ -385,18 +385,20 @@ export class File{
   constructor(type, ruta, id_user,realname){
 
     if(type!='YOUTUBE_LINK'){
-      this.ruta = 'http://localhost:8081/uploads/download/'+id_user+'/materiales/'+ruta;
+      this.ruta = 'https://s3.us-east-2.amazonaws.com/learning-peru-bucket/'+id_user+'/materiales/'+ruta;
 
     }
     else{
       this.ruta = "https://www.youtube.com/embed/"+ ruta.substr(32, ruta.length-1);;
     }
     this.name = this.getName(ruta,type)
+    
     this.type = type;
     this.realname = realname;
     this.imagen = this.buscarImagen(type);
 
   }
+  
 
 };
 

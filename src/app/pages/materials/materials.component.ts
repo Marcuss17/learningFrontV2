@@ -39,6 +39,7 @@ export class MaterialsComponent implements OnInit {
   private myMaterials : SingleMaterial[] = [];
   private Grades : string[] = ['1er grado','2do grado','3er grado','4to grado','5to grado'];
   private currentTema : any;
+  private url:string;
 
   private toUpload : boolean = false;
   public curar_button : boolean = true;
@@ -352,7 +353,7 @@ export class MaterialsComponent implements OnInit {
               this.materialService.createFile(
               this.currentupload.id,
               this.currentupload.titulo,
-              material.name,
+              response.url.slice(69,(response.url.length)),
               material.type
             ).subscribe(
               response=> {
@@ -369,6 +370,8 @@ export class MaterialsComponent implements OnInit {
               icon: 'error',
             })
           }
+        }, error => {
+          console.log(error);
         }
       )
     }

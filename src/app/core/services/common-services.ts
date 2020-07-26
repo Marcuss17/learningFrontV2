@@ -4,5 +4,5 @@ import { Injectable, HostListener } from "@angular/core";
   providedIn: "root",
 })
 export class CommonService {
-  baseUrl: string = "http://localhost:8081";
+  baseUrl: string = "https://learningbackend.herokuapp.com";
 }
